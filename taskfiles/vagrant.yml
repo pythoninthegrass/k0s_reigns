@@ -1,0 +1,123 @@
+version: "3"
+
+set: ['e', 'u', 'pipefail']
+shopt: ['globstar']
+
+vars:
+  VAGRANTFILE: '{{.VAGRANTFILE | default (printf "%s/Vagrantfile" .ROOT_DIR)}}'
+
+tasks:
+  _validate:
+    internal: true
+    desc: "Internal task to validate the Vagrantfile"
+    cmds:
+      - vagrant validate
+    dir: "{{.ROOT_DIR}}"
+    env:
+      VAGRANT_VAGRANTFILE: "{{.VAGRANTFILE}}"
+
+  _run:
+    internal: true
+    desc: "Internal task to run Vagrant commands"
+    cmds:
+      - vagrant {{.VAGRANT_ACTION}}
+    dir: "{{.ROOT_DIR}}"
+    env:
+      VAGRANT_VAGRANTFILE: "{{.VAGRANTFILE}}"
+
+  plugin:
+    desc: "Install the vagrant plugins"
+    cmds:
+      - vagrant plugin install vagrant-tart
+    run: once
+    silent: true
+
+  validate:
+    desc: "Validate the Vagrantfile"
+    summary: |
+      Validate the Vagrantfile.
+
+      Example:
+        task vagrant:validate
+    cmds:
+      - task: _validate
+
+  up:
+    desc: "Start the project with vagrant"
+    summary: |
+      Start the project with vagrant
+
+      Example:
+        task vagrant:up
+    deps:
+      - validate
+    cmds:
+      - task: _run
+        vars: { VAGRANT_ACTION: "up" }
+
+  destroy:
+    desc: "Destroy the vagrant machine"
+    summary: |
+      Destroy the vagrant machine.
+
+      Example:
+        task vagrant:destroy
+    cmds:
+      - task: _run
+        vars: { VAGRANT_ACTION: "destroy -f" }
+
+  suspend:
+    desc: "Suspend the vagrant machine"
+    summary: |
+      Suspend the vagrant machine.
+
+      Example:
+        task vagrant:suspend
+    cmds:
+      - task: _run
+        vars: { VAGRANT_ACTION: "suspend" }
+
+  resume:
+    desc: "Resume the vagrant machine"
+    summary: |
+      Resume the vagrant machine.
+
+      Example:
+        task vagrant:resume
+    cmds:
+      - task: _run
+        vars: { VAGRANT_ACTION: "resume" }
+
+  halt:
+    desc: "Halt the vagrant machine"
+    summary: |
+      Halt the vagrant machine.
+
+      Example:
+        task vagrant:halt
+    cmds:
+      - task: _run
+        vars: { VAGRANT_ACTION: "halt" }
+
+  ssh:
+    desc: "SSH into the vagrant machine"
+    summary: |
+      SSH into the vagrant machine.
+
+      Example:
+        task vagrant:ssh
+    cmds:
+      - task: _run
+        vars: { VAGRANT_ACTION: "ssh" }
+    ignore_error: true
+
+  reload:
+    desc: "Reload the vagrant machine"
+    summary: |
+      Reload the vagrant machine.
+
+      Example:
+        task vagrant:reload
+    cmds:
+      - task: _run
+        vars: { VAGRANT_ACTION: "reload" }
