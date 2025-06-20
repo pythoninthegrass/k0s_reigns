@@ -17,6 +17,12 @@ The setup creates an Ubuntu VM that automatically installs k0s and generates a k
 
 **IMPORTANT**: Always use the taskfile commands instead of running vagrant or tart directly. The taskfile provides abstracted commands that handle proper configuration and environment setup.
 
+### Validation Commands
+
+- `markdownlint -c .markdownlint.json <MARKDOWN_FILE.md>` - Validate markdown files against linting rules
+
+**Note**: Always follow linting rules and validate any markdown file changes after making them.
+
 ### Task Management
 
 - `task` or `task --list` - List all available tasks
@@ -62,7 +68,6 @@ When validating work or troubleshooting, you can run commands directly in the VM
 
 - `Vagrantfile` - Standard Vagrant configuration (DHCP)
 - `Vagrantfile.dev` - Development configuration with static IP (192.168.64.100)
-- `01-netcfg.yaml.tpl` - Netplan template for static IP configuration
 - `taskfile.yml` - Main task definitions
 - `taskfiles/vagrant.yml` - Vagrant-specific tasks
 - `taskfiles/tart.yml` - Tart-specific tasks
@@ -96,7 +101,7 @@ When making changes to Vagrantfile or VM configuration:
 
 ## Technology Stack Documentation
 
-### Tart (https://github.com/cirruslabs/tart)
+### Tart
 
 **Purpose**: Virtualization toolset for building, running, and managing macOS and Linux VMs on Apple Silicon
 
@@ -113,9 +118,9 @@ When making changes to Vagrantfile or VM configuration:
 - macOS 13.0 (Ventura) or later
 
 **Installation**: `brew install cirruslabs/cli/tart`
-**Documentation**: https://tart.run
+**Documentation**: <https://tart.run>
 
-### k0s (https://docs.k0sproject.io)
+### k0s
 
 **Purpose**: Zero friction Kubernetes distribution designed for simplicity and automation
 **Key Features**:
@@ -126,9 +131,9 @@ When making changes to Vagrantfile or VM configuration:
 - Built-in cluster lifecycle management
 - Automatic certificate management
 
-**Documentation**: https://docs.k0sproject.io
+**Documentation**: <https://docs.k0sproject.io>
 
-### Vagrant-Tart Plugin (https://github.com/letiemble/vagrant-tart)
+### Vagrant-Tart Plugin
 
 **Purpose**: Vagrant plugin that adds Tart provider to Vagrant for Apple Silicon environments
 
@@ -139,7 +144,7 @@ When making changes to Vagrantfile or VM configuration:
 - Designed specifically for Apple Silicon platforms
 
 **Installation**: Plugin is installed via `task vagrant:plugin` which runs `vagrant plugin install vagrant-tart`
-**Documentation**: https://letiemble.github.io/vagrant-tart/
+**Documentation**: <https://letiemble.github.io/vagrant-tart/>
 
 **Provider Configuration Options** (from Vagrantfile):
 
