@@ -1,9 +1,16 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-SSH_USER = "admin"
-SSH_PASS = "admin"
-SHARED_FOLDER = "/home/#{SSH_USER}/git/k0s_reigns"
+COUNT_CONTROLLER = (ENV['COUNT_CONTROLLER'] || 1).to_i
+COUNT_WORKER = (ENV['COUNT_WORKER'] || 1).to_i
+CPU_CONTROLLER = (ENV['CPU_CONTROLLER'] || 2).to_i
+CPU_WORKER = (ENV['CPU_WORKER'] || 2).to_i
+RAM_CONTROLLER = (ENV['RAM_CONTROLLER'] || 2048).to_i
+RAM_WORKER = (ENV['RAM_WORKER'] || 4096).to_i
+DISK_SIZE = (ENV['DISK_SIZE'] || 32).to_i
+SSH_USER = ENV['SSH_USER'] || "admin"
+SSH_PASS = ENV['SSH_PASS'] || "admin"
+SHARED_FOLDER = ENV['SHARED_FOLDER'] || "/home/#{SSH_USER}/git/k0s_reigns"
 
 Vagrant.configure("2") do |config|
   config.vm.provider "tart" do |tart|
