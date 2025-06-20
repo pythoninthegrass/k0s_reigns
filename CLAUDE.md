@@ -19,7 +19,7 @@ The setup creates an Ubuntu VM that automatically installs k0s and generates a k
 
 ### Validation Commands
 
-- `markdownlint -c .markdownlint.json <MARKDOWN_FILE.md>` - Validate markdown files against linting rules
+- `markdownlint -c .markdownlint.jsonc <MARKDOWN_FILE.md>` - Validate markdown files against linting rules
 
 **Note**: Always follow linting rules and validate any markdown file changes after making them.
 
