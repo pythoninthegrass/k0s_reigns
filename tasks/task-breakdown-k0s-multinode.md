@@ -27,24 +27,7 @@ Based on PRD: [k0s Multi-Node Cluster with Vagrant](./prd-k0s-multinode-cluster.
 
 ### Task 1.2: Static IP Address Management
 
-**Priority**: High  
-**Estimate**: 1 day  
-**Description**: Implement static IP allocation strategy for reliable inter-node communication
-
-**Acceptance Criteria**:
-
-- [ ] Controller nodes use IP range: 192.168.64.10-12
-- [ ] Worker nodes use IP range: 192.168.64.20-29
-- [ ] Sequential IP assignment based on node count
-- [ ] IP addresses are predictable and documented
-- [ ] No IP conflicts between node types
-
-**Technical Notes**:
-
-- Controllers: 192.168.64.10 + index
-- Workers: 192.168.64.20 + index
-
----
+**Status**: ✅ **COMPLETED** - Static IP allocation handled by current Vagrantfile configuration
 
 ### Task 1.3: VM Resource Allocation Classes
 
@@ -54,10 +37,12 @@ Based on PRD: [k0s Multi-Node Cluster with Vagrant](./prd-k0s-multinode-cluster.
 
 **Acceptance Criteria**:
 
-- [ ] Controllers: 2048MB memory, 2 CPU cores, 32GB disk
-- [ ] Workers: 4096MB memory, 2 CPU cores, 32GB disk
-- [ ] Resource classes are configurable via environment variables
-- [ ] Validation for minimum resource requirements
+- [x] Controllers: 2048MB memory, 2 CPU cores, 32GB disk
+- [x] Workers: 4096MB memory, 2 CPU cores, 32GB disk
+- [x] Resource classes are configurable via environment variables
+- [x] Validation for minimum resource requirements
+
+**Status**: ✅ **COMPLETED** - Resource allocation classes implemented with validation
 
 ---
 
